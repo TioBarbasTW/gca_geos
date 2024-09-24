@@ -1,0 +1,183 @@
+{% extends './base.html' %}
+
+{% block title %} Clientes {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Selecione serviço:</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">                 
+                        {% for n in chave %}               
+                            
+                                <a class="btn btn-primary btn-lg" href="{% url 'criarPedido' n %}" role="button">{{n}}</a>
+                                                     
+                        {% endfor %} 
+                    </div>                                      
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Clientes</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cliente %}
+                    <tr>
+                        <td>{{c.codCliente}}</td>
+                        <td>{{c.nomeCliente}}</td>
+                        <td>{{c.telefoneCliente}}</td>
+                    </tr>                
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>        
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">        
+        <h1>Prestadores</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Estado</th>
+                        <th>Cliente Vinculado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in prestador %}
+                    <tr>
+                        <td>{{p.codPrestador}}</td>
+                        <td>{{p.statusPrestador}}</td>
+                        <td>{{p.codCliente}}</td>
+                    </tr>                
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>  
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Produtos</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descriçao</th>
+                        <th>Preço Unitario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in produto %}
+                    <tr>
+                        <td>{{r.codProduto}}</td>
+                        <td>{{r.descProduto}}</td>
+                        <td>{{r.precoUnitarioProduto}}</td>
+                    </tr>                
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>        
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"></div>
+        <h1>Estoque</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Estoque Disponivel</th>
+                        <th>UM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in estoque %}
+                    <tr>
+                        <td>{{e.codProduto}}</td>
+                        <td>{{e.estoqueProduto}}</td>
+                        <td>{{e.unidadeProduto}}</td>
+                    </tr>                
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>        
+    </div>
+</div>
+<div class="row">    
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"></div>
+        <h1>Pedido</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th># Pedido</th>
+                        <th>Produto</th>
+                        <th>Cliente</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pd in pedido %}
+                    <tr>
+                        <td>{{pd.codPedido}}</td>
+                        <td>{{pd.codProduto}}</td>
+                        <td>{{pd.codPrestador}}</td>
+                        <td>{{pd.qtdProduto}}</td>
+                        <td>{{pd.valorConsumido}}</td>
+                        <td>{{pd.estadoPedido}}</td>
+                    </tr>                
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>        
+    </div>
+</div>
+<div class="row">    
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8"></div>
+        <h1>Pagamento</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Pedido</th>
+                        <th>Forma de pagamento</th>
+                        <th>Total Pedido</th>
+                        <th>Desconto</th>
+                        <th>Valor a pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pg in pagamento %}
+                    <tr>
+                        <td>{{pg.codPagamento}}</td>
+                        <td>{{pg.codPedido}}</td>
+                        <td>{{pg.formaPagamento}}</td>
+                        <td>{{pg.totalPagamento}}</td>
+                        <td>{{pg.descontoPagamento}}</td>
+                        <td>{{pg.valorPagamento}}</td>
+                    </tr>                
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>        
+    </div>
+</div>
+{% endblock %}

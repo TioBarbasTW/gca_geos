@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+
+{% block title %} Pedidos {% endblock %}
+
+{% block body %}
+<form action="{% url 'pedido' %}" method="POST">
+    {% csrf_token %}
+    <label for="servicoAberto">No. </label>
+    <input type="text" name="servicoAberto" id="servicoAberto" value="{{serv}}" disabled>
+    <label for="nomeCliente">Cliente:</label>
+    <input type="text" name="nomeCliente" id="nomeCliente" placeholder="Nome do cliente" required>
+    <label for="nomeCliente">No. Telefone:</label>
+    <input type="tel" name="telefoneCliente" id="telefoneCliente" placeholder="telefone do cliente" required>
+    <button type="submit">
+        Abrir Conta
+    </button>
+</form>
+
+
+
+{% endblock %}
